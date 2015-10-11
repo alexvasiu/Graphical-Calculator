@@ -18,8 +18,8 @@ math = mathjs(),
 			timeIncrement=0.1;
 
 
-		canvas.style.left = "40%";
-        canvas.style.top = "30%";
+		canvas.style.left = "35%";
+        canvas.style.top = "25%";
         canvas.style.position = "absolute";
 	//main program	
 initExprFromHash();
@@ -27,8 +27,8 @@ drawCurve();
 initTextField();
 startAnimation();
 
-window.addEventListener('hashchange', initExprFromHash);
-
+window.addEventListener('hashchange', initExprFromHash);		
+			
 function setExpr(newExpr){
 	expr=newExpr;
 	  tree = math.parse(expr, scope)
@@ -36,6 +36,7 @@ function setExpr(newExpr){
 
 function initExprFromHash(){
 	var hash =getHashValue();
+	var pos=$('#inputField').caret();
 	if(hash)
 		setExpr(hash);
 		else
@@ -43,7 +44,9 @@ function initExprFromHash(){
 			setExpr('sin(x+t)*x');
             setHashFromExpr();
         }
-		  $('#inputField').val(expr);
+		 $('#inputField').val(expr);
+		 $('#inputField').caret(pos);
+		  
 }
 
 function setHashFromExpr(){
